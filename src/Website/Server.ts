@@ -99,6 +99,9 @@ export default class Server {
         }
     }
     listen() {
-        this.app.listen(this.port, () => this.data.utils.print(`Server started listening on ${this.port}`))
+        this.app.listen(this.port, () => {
+            this.data.utils.print(`Server started listening on ${this.port}`);
+            this.data.utils.print(`Project: http://localhost:${this.port}/login`);
+        })
     }
 }
