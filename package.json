@@ -1,0 +1,38 @@
+{
+  "name": "college-classroom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -e ts,tsx,json --exec \"npx ts-node src/Manager.ts\" src/Manager.ts --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
+    "date-and-time": "^3.0.3",
+    "date-format": "^4.0.14",
+    "dateformat": "^5.0.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "next": "^13.5.3",
+    "next.js": "^1.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.4",
+    "@types/dateformat": "^5.0.0",
+    "@types/express": "^4.17.18",
+    "@types/express-session": "^1.17.8",
+    "@types/react": "18.2.24",
+    "@types/uuid": "^9.0.4",
+    "typescript": "5.2.2"
+  }
+}
