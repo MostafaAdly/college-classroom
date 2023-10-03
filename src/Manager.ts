@@ -12,12 +12,20 @@ export default class Manager {
         this.startLoader()
     }
     startLoader() {
-        const _loader = new BootLoader(this.data);
-        // Initialize utils
-        _loader.load_utils();
+        (async () => {
+            const _loader = new BootLoader(this.data);
+            // Initialize utils
+            _loader.load_utils();
 
-        // Initialize the Server
-        _loader.load_server();
+            // Connect to the Database
+            _loader.load_Database();
+
+            // Initialize GraphQL
+            _loader.load_GraphQl();
+
+            // Initialize the Server
+            // _loader.load_Server();
+        })();
     }
 }
 

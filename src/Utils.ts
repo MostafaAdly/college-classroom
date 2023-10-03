@@ -27,7 +27,7 @@ export default class Global {
             this.utils.print(colors.red(msg), name);
         this.utils.createId = (removeSplits: boolean = false, repeat: number = 1) => {
             let id = "";
-            for (let i = 0; i < repeat; i++) id += uuid().replace("-", removeSplits ? "" : "-")
+            for (let i = 0; i < repeat; i++) id += uuid().replaceAll("-", removeSplits ? "" : "-")
             return id;
         }
     }
