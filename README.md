@@ -2,4 +2,5 @@
 college classroom project
 
 current developers:
-- MostafaAdly - Fatma Omar
+- MostafaAdly (Backend)
+- Fatma Omar (Frontend)
