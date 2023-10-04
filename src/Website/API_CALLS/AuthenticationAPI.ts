@@ -20,9 +20,9 @@ export default class AuthenticationAPI extends Page {
                 response = saveInSession ? { success: `Credentials successfully logged in`, login } : { error: (`These credentials are not correct.`), user }
             } else if (register) {
                 saveInSession = !(await this.isCredentialsValid(false, register.username, register.email, register.password));
-                if (!saveInSession)
-                    user = this.registerUser(register.username, register.email, register.password)
-                response = !saveInSession ? { success: `Credentials successfully registered`, register } : { error: `Credentials are not valid`, saveInSession };
+                if (saveInSession)
+                    user = await this.registerUser(register.username, register.email, register.password)
+                response = saveInSession ? { success: `Credentials successfully registered`, register } : { error: `These credentials are not valid`, saveInSession };
             }
             if (saveInSession) // validates both login and register
                 this.saveUserInSession(req, user)
@@ -47,14 +47,14 @@ export default class AuthenticationAPI extends Page {
 
         } else {
             // Register : check if credentials are used.
-            return (await User.schema().findOne({ $or: [{ username }, { email }] }).collation({ locale: "en", strength: 2 }).exec());
+            return (await User.schema().findOne({ $or: [{ username }, { 'credentials.email': email }] }).collation({ locale: "en", strength: 2 }).exec());
         }
     }
 
     private async registerUser(username: string, email: string, password: string): Promise<object> {
         email = ("" + email).toLowerCase()
         const user = new User({ username, credentials: { email, password } });
-        new (User.schema())(user).save();
+        await new (User.schema())(user).save();
         return user
     }
 

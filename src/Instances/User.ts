@@ -24,9 +24,9 @@ export default class User {
         if (config.role)
             this.role = config.role
         this.credentials = config.credentials
-        this.info = config.info
-        this.classes = config.classes
-        this.comments = config.comments
+        this.info = config.info || {}
+        this.classes = config.classes || []
+        this.comments = config.comments || []
     }
 
     // ============== - MODEL - ==============
