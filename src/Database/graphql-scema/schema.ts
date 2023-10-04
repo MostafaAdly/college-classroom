@@ -1,12 +1,14 @@
-import Classroom from '../../Instances/Classroom';
 // =============================================== [ Libraries ]
 import {
     GraphQLObjectType,
     GraphQLString,
     GraphQLSchema,
     GraphQLID,
-    GraphQLList
+    GraphQLList,
 } from 'graphql'
+import Classroom from '../../Instances/Classroom';
+import User from '../../Instances/User'
+import Post from '../../Instances/Post';
 
 // ================================================ [ SchemaBuilder ]
 export default class SchemaBuilder {
@@ -20,14 +22,17 @@ export default class SchemaBuilder {
             name: 'User',
             fields: () => ({
                 id: { type: GraphQLID },
-                name: { type: GraphQLString },
-                email: { type: GraphQLString },
+                username: { type: GraphQLString },
+                credentials: {
+                    type: this.types.CredentialsType,
+                    resolve: async (parent, args) => {
+                        return parent.credentials
+                    }
+                },
                 classes: {
                     type: new GraphQLList(this.types.ClassroomType),
                     resolve: async (parent, args) => {
-                        console.log(parent)
-                        console.log("--")
-                        return (await (this.data.database.collection('classrooms')).find({ students: parent.id }).toArray()) || null
+                        return (await Classroom.schema().find({ students: parent.id })) || null
                     },
                 }
             })
@@ -40,22 +45,19 @@ export default class SchemaBuilder {
                 teachers: {
                     type: new GraphQLList(this.types.UserType),
                     resolve: async (parent, args) => {
-                        const fetched = await (this.data.database.collection("users").find({ id: { $in: parent.teachers } })).toArray();
-                        return fetched || [];
+                        return (await User.schema().find({ id: { $in: parent.teachers } })) || [];
                     }
                 },
                 students: {
                     type: new GraphQLList(this.types.UserType),
                     resolve: async (parent, args) => {
-                        const fetched = await (this.data.database.collection("users").find({ classes: parent.id })).toArray();
-                        return fetched || [];
+                        return (await User.schema().find({ id: { $in: parent.students } })) || [];
                     }
                 },
                 posts: {
                     type: new GraphQLList(this.types.PostType),
                     resolve: async (parent, args) => {
-                        const fetched = await (this.data.database.collection("posts").find({ id: { $in: parent.posts } })).toArray();
-                        return fetched || [];
+                        return (await Post.schema().find({ id: { $in: parent.posts } })) || [];
                     }
                 }
             })
@@ -86,6 +88,13 @@ export default class SchemaBuilder {
                 text: { type: GraphQLString },
                 user: { type: this.types.UserType },
             })
+        }),
+        CredentialsType: new GraphQLObjectType({
+            name: "Credentials",
+            fields: () => ({
+                email: { type: GraphQLString },
+                password: { type: GraphQLString }
+            })
         })
     }
     RootQuery = new GraphQLObjectType({
@@ -95,21 +104,40 @@ export default class SchemaBuilder {
                 type: this.types.UserType,
                 args: { id: { type: GraphQLID } },
                 resolve: async (parent, args) => {
-                    return (await (this.data.database.collection("users")).findOne({ id: args.id })) || null;
+                    return (await User.schema().findOne({ id: args.id })) || null;
                 }
             },
             users: {
                 type: new GraphQLList(this.types.UserType),
                 resolve: async (parent, args) => {
-
-
+                    return (await User.schema().find({})) || [];
                 }
             },
-            post: {
+            classroom: {
+                type: this.types.ClassroomType,
+                args: { id: { type: GraphQLID } },
+                resolve: async (parent, args) => {
+                    return (await Classroom.schema().findOne({ id: args.id })) || null;
+                }
+            },
+            classrooms: {
+                type: new GraphQLList(this.types.ClassroomType),
+                resolve: async (parent, args) => {
+                    return (await Classroom.schema().find({})) || [];
+                }
+            },
+            postById: {
                 type: this.types.PostType,
                 args: { id: { type: GraphQLID } },
                 resolve: async (parent: any, args: any) => {
-
+                    return (await Post.schema().findOne({ id: args.id })) || null;
+                }
+            },
+            postByClassId: {
+                type: this.types.PostType,
+                args: { id: { type: GraphQLID } },
+                resolve: async (parent: any, args: any) => {
+                    return (await Post.schema().findOne({ class: args.id })) || null;
                 }
             },
 

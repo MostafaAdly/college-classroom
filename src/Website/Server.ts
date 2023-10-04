@@ -1,5 +1,5 @@
 // ================================================ [ Libraries ]
-import express, { Express, Router } from 'express';
+import express, { Express } from 'express';
 import Page from './Pages/Page';
 import Login from './Pages/Authentication/Login';
 import Register from './Pages/Authentication/Register';
@@ -7,9 +7,14 @@ import next from 'next'
 import { NextServer } from 'next/dist/server/next';
 import WildCard from './Pages/WildCards/NextWildCard';
 import sessions from 'express-session'
+import MongoStore from 'connect-mongo';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser'
 import AuthenticationAPI from './API_CALLS/AuthenticationAPI';
+import GraphQLAPI from './API_CALLS/GraphQLAPI'
+import Dashboard from './Pages/Dashboard/Dashboard';
+import SessionHandler from './SessionHandler';
+import Logout from './Pages/Authentication/Logout';
 
 // ================================================ [ Server ]
 export default class Server {
@@ -18,6 +23,7 @@ export default class Server {
     private development: boolean = process.env.ENVIROMENT !== "production";
 
     // ============== - PUBLIC VARIABLES - ==============
+    public sessionHandler: SessionHandler;
     public port: number = 3000;
     public app: Express = express();
     public next: NextServer = next({
@@ -30,6 +36,7 @@ export default class Server {
     }
     load() {
         this.port = parseInt(process.env.SERVER_PORT || '' + this.port);
+        this.sessionHandler = new SessionHandler(this.data);
     }
     load_Middleware() {
         // For parsing the responses.
@@ -45,8 +52,12 @@ export default class Server {
             secret: this.data.utils.createId(true, 3),
             saveUninitialized: true,
             cookie: { maxAge: 1000 * 60 * 60 * 24 },
-            resave: false
+            resave: false,
+            store: MongoStore.create({
+                mongoUrl: process.env.MONGODB_CONNECTION
+            })
         }));
+        this.app.use((req, res, next) => this.sessionHandler.runMiddleware(req, res, next))
 
     }
     initialize() {
@@ -54,7 +65,7 @@ export default class Server {
         this.next.prepare().then(() => {
 
             // Loading all available and working API for the upcoming loaded pages.
-            this.load_APIS();
+            this.load_APIs();
 
             // Loading all available pages for  [ Development / Production ]
             this.load_Pages();
@@ -73,8 +84,12 @@ export default class Server {
 
 
             // These pages can be edited.
+            new Dashboard(this.data),
+
+            // These pages can be edited.
             new Login(this.data),
             new Register(this.data),
+            new Logout(this.data),
 
             // Do not remove this.
             new WildCard(this.data),
@@ -85,13 +100,16 @@ export default class Server {
             this.app.use(page.base_url, page.getRouter());
         }
     }
-    load_APIS() {
+    load_APIs() {
 
         // Current Running APIs for the available pages.
         const apis: Page[] = [
 
             // Verification API for the Auth pages
-            new AuthenticationAPI(this.data, "/api/v1/auth")
+            new AuthenticationAPI(this.data, "/api/v1/auth"),
+
+            // Loading GraphQL API
+            new GraphQLAPI(this.data, "/api/v1/graphql"),
         ];
 
         for (let api of apis) {

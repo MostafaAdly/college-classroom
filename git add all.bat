@@ -1,0 +1,1 @@
+git add --all -- :!node_modules/

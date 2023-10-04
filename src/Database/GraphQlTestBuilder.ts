@@ -13,15 +13,15 @@ export default class GraphQLBuilder {
     }
     build() {
 
-        const builder = new SchemaBuilder(this.data);
         const app = express();
-        const port = 4001;
+        const port = 4000;
 
+        const builder = new SchemaBuilder(this.data);
         app.use('/graphql', graphqlHTTP({
             schema: builder.schema(),
             graphiql: true
         }))
 
-        app.listen(port, () => console.log("app is now listening on " + port))
+        app.listen(port, () => this.data.utils.print("GraphiQL Tester is now listening on: " + port, "GraphQL"))
     }
 }

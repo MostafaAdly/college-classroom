@@ -1,6 +1,6 @@
 // ====================================================== [ Libraries ]
 
-import GraphQLBuilder from "./Database/GraphQlBuilder";
+import GraphQLBuilder from "./Database/GraphQlTestBuilder";
 import MongoDB from "./Database/MongoDB";
 import Global from "./Utils";
 import Server from "./Website/Server";

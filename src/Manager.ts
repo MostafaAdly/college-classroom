@@ -20,11 +20,11 @@ export default class Manager {
             // Connect to the Database
             _loader.load_Database();
 
-            // Initialize GraphQL
-            _loader.load_GraphQl();
+            // Initialize GraphQL [ For Testing purposes only ]
+            // _loader.load_GraphQl();
 
             // Initialize the Server
-            // _loader.load_Server();
+            _loader.load_Server();
         })();
     }
 }

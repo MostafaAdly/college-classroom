@@ -1,9 +1,30 @@
 import React from "react";
 import Image from "next/image";
 import logo from './images/classroom.png'
+import {Alert} from '../../components/Alert'
+import { alertService } from '../../services/alert.service';
+import { useRouter } from 'next/navigation'
+import {checkAndCreateCredentials} from "../../services/Authentication.service"
 
-export default function Login () {
-    // const 
+
+export default function Register() {
+    const router = useRouter();
+
+    const checkPostCredentials = (event: any) => {
+        event.preventDefault();
+        const username = event.target.usernameInput.value, password = event.target.passwordInput.value, email = event.target.emailInput.value;
+        if (username != "" && password != "" && email != "") {
+             checkAndCreateCredentials(username, email, password).then((data: any) => {
+                if (data.error)
+                    alertService.error(data.error, { autoClose: true, keepAfterRouteChange: false })
+                else {
+                    router.push('/dashboard')
+                }
+            })
+        } else {
+            alertService.error("Please provide complete valid information", {autoClose: true, keepAfterRouteChange: false})
+        }
+    }
 
     return (
 
@@ -32,25 +53,29 @@ export default function Login () {
                             >
                                 Register
                             </h3>
-                            <form action="#" className="signup-form">
+                            <Alert />
+                            <form action="#" className="signup-form" onSubmit={checkPostCredentials}>
                                 <div className="form-group mb-3">
                                     <input
                                         type="text"
+                                        name="usernameInput"
                                         className="form-control"
                                         placeholder="Username"
                                     />
                                 </div>
                                 <div className="form-group mb-3">
                                     <input
-                                        type="text"
+                                        type="email"
+                                        name="emailInput"
                                         className="form-control"
                                         placeholder="Email Address"
                                     />
                                 </div>
                                 <div className="form-group mb-3">
                                     <input
-                                        id="password-field"
                                         type="password"
+                                        id="password-field"
+                                        name="passwordInput"
                                         className="form-control"
                                         placeholder="Password"
                                     />

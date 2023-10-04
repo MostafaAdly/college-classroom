@@ -1,5 +1,7 @@
 // ================================================= [Libraries]
 import { v4 as uuid } from 'uuid';
+import mongoose, { Schema } from 'mongoose'
+
 
 // ================================================= [ Classroom ]
 export default class Classroom {
@@ -9,9 +11,21 @@ export default class Classroom {
     public id: string = uuid();
     public name: string;
     public posts: string[];
+    public teachers: string[];
+    public students: string[];
 
     // ============== - CONSTRUCTOR - ==============
 
-    constructor() {
+    // ============== - MODEL - ==============
+    private static model: any;
+    static schema = () => {
+        if (!this.model) this.model = mongoose.model("classrooms", new Schema({
+            id: String,
+            name: String,
+            teachers: [String],
+            students: [String],
+            posts: [String]
+        }))
+        return this.model;
     }
 }

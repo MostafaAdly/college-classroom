@@ -1,9 +1,22 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from 'next/navigation'
 import logo from './images/classroom.png'
+import {Alert} from '../../components/Alert'
+import { alertService } from '../../services/alert.service';
+import {performLogin} from "../../services/Authentication.service"
 
-export default function Login () {
-    // const 
+export default function Login() {
+    const router = useRouter();
+    const checkCredentials = (event: any) => {
+        event.preventDefault();
+        const email = event.target.emailInput.value, password = event.target.passwordInput.value;
+        performLogin(email, password).then((data: any) => {
+            if (data.error) 
+                return alertService.error(data.error, { autoClose: true, keepAfterRouteChange: false })
+            else router.push('/dashboard')
+        })
+    }
 
     return (
 
@@ -32,10 +45,12 @@ export default function Login () {
                             >
                                 Login
                             </h3>
-                            <form action="#" className="signup-form">
+                            <Alert />
+                            <form action="#" className="signup-form" onSubmit={checkCredentials}>
                                 <div className="form-group mb-3">
                                     <input
-                                        type="text"
+                                        type="email"
+                                        name="emailInput"
                                         className="form-control"
                                         placeholder="Username / Email Address"
                                     />
@@ -43,6 +58,7 @@ export default function Login () {
                                 <div className="form-group mb-3">
                                     <input
                                         id="password-field"
+                                        name="passwordInput"
                                         type="password"
                                         className="form-control"
                                         placeholder="Password"
