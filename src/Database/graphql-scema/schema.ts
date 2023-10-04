@@ -32,7 +32,7 @@ export default class SchemaBuilder {
                 classes: {
                     type: new GraphQLList(this.types.ClassroomType),
                     resolve: async (parent, args) => {
-                        return (await Classroom.schema().find({ students: parent.id })) || null
+                        return (await Classroom.schema().find({ $or: [{ students: parent.id }, { teachers: parent.id }] })) || null
                     },
                 }
             })

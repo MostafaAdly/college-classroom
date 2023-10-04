@@ -24,7 +24,8 @@ export default class Classroom {
             name: String,
             teachers: [String],
             students: [String],
-            posts: [String]
+            posts: [String],
+            createdAt: Date,
         }))
         return this.model;
     }

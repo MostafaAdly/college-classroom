@@ -24,8 +24,16 @@ export default class Post {
             user: String,
             text: String,
             class: String,
-            comments: [Comment.config],
-            Date: Date,
+            comments: [
+                {
+                    id: String,
+                    user: String,
+                    post: String,
+                    text: String,
+                    date: Date,
+                }
+            ],
+            date: Date,
         }));
         return this.model
     }

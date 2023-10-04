@@ -1,15 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { fetchGraphQL } from '../../services/GraphQL.services'
-    
-export default function Dashboard({ user }: {user: any}) {
-    const [data, setData] = useState({})
+import ClassroomCard from '../../components/ClassroomCard';
 
-    useEffect(() =>  {
-        fetchGraphQL(
-            `
+export default function Dashboard({ user }: { user: any }) {
+    return (
+        <div>
+            <link href="https://assets.website-files.com/645128e3dbdad55ed2803eff/css/dashflowtemplate.webflow.bd0dc503c.css" rel="stylesheet" type="text/css" />
+            {user.classes.map((classroom: any) => (
+                <div key={classroom.id}>
+                    <ClassroomCard id={classroom.id} name={classroom.name} image={""} />
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export async function getServerSideProps(ctx: any) {
+    const user = ((await fetchGraphQL(
+        `
             {
-                user(id: "${user.id}"){
+                user(id: "${ctx.query.id}"){
+                    id
                     username
+                    credentials {
+                        email
+                    }
                     classes {
                         id
                         name
@@ -17,23 +32,10 @@ export default function Dashboard({ user }: {user: any}) {
                 }
             }
             `
-        ).then((data) => {
-            setData(data);
-        })
-    }, [])
-
-    return (
-        <div>
-            Hello, This is the Dashboard
-            { JSON.stringify(data) }
-        </div>
-    );
-};
-
-export async function getServerSideProps(ctx: any) {
+    )) as any)?.data?.user;
     return {
         props: {
-            user: ctx.query
+            user
         },
     };
 }

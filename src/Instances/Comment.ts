@@ -1,6 +1,5 @@
 // ================================================= [Libraries]
 import { v4 as uuid } from 'uuid';
-import mongoose, { Schema } from 'mongoose';
 
 // ================================================= [ Comment ]
 export default class Comment {
@@ -9,14 +8,11 @@ export default class Comment {
 
     public id: string = uuid();
     public user: string;
+    public text: string;
     public post: string;
+    public date: Date;
 
     // ============== - Config - ==============
-    static config: {
-        id: string,
-        user: string,
-        post: string
-    }
 
     // ============== - Constructor - ==============
     // constructor()
