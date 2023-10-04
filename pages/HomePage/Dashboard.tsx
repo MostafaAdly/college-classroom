@@ -18,7 +18,6 @@ export default function Dashboard({ user }: {user: any}) {
             }
             `
         ).then((data) => {
-            console.log("RESPONSE", data);
             setData(data);
         })
     }, [])

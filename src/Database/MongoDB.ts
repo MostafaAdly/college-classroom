@@ -1,7 +1,5 @@
 // ================================================= [ Libraries ]
-
 import mongoose from "mongoose";
-import User from "../Instances/User";
 
 // ================================================= [ MongoDB ]
 export default class MongoDB {
@@ -13,9 +11,6 @@ export default class MongoDB {
         try {
             mongoose.connect(process.env.MONGODB_CONNECTION || "mongodb://localhost:27017/").then(async () => {
                 this.data.utils.print("Database [ MongoDB ] connected.", "Database")
-
-                // console.log(await (User.schema().findOne({ 'credentials.email': "mostafaadlyamar@gmail.com", "credentials.password": "Mostafa011" })))
-
             }).catch((err) => {
                 console.log(err);
                 process.exit(1);
