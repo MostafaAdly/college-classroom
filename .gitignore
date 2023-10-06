@@ -1,7 +1,6 @@
 .env
-./node_modules
 .next
-./Pages (Frontenv)
-./src
-./tsconfig.json
-./next-env.d.ts
+Pages (Frontenv)
+tsconfig.json
+next-env.d.ts
+node_modules

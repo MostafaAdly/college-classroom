@@ -15,6 +15,7 @@ import GraphQLAPI from './API_CALLS/GraphQLAPI'
 import Dashboard from './Pages/Dashboard/Dashboard';
 import SessionHandler from './SessionHandler';
 import Logout from './Pages/Authentication/Logout';
+import path from 'path';
 
 // ================================================ [ Server ]
 export default class Server {
@@ -45,7 +46,7 @@ export default class Server {
         // For parsing cookies
         this.app.use(cookieParser());
         // Making accessing static files easier
-        this.app.use(express.static(__dirname));
+        this.app.use("../../pages", express.static(__dirname));
 
         // For session handling.
         this.app.use(sessions({
