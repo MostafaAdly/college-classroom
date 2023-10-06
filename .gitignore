@@ -1,6 +1,6 @@
 .env
 .next
-Pages (Frontenv)
+pages_fe
 tsconfig.json
 next-env.d.ts
 node_modules
