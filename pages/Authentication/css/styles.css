@@ -126,3 +126,31 @@
 .auth-btn:hover {
     border: 1px solid #2d79f3;
 }
+
+.checkbutton-container {
+    cursor: pointer;
+}
+
+.checkbutton-container input {
+    display: none;
+}
+
+.checkbutton-container svg {
+    overflow: visible;
+}
+
+.checkbutton-path {
+    fill: none;
+    stroke: black;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+    stroke-dasharray: 241 9999999;
+    stroke-dashoffset: 0;
+}
+
+.checkbutton-container input:checked ~ svg .checkbutton-path {
+    stroke-dasharray: 70.5096664428711 9999999;
+    stroke-dashoffset: -262.2723388671875;
+}

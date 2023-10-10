@@ -125,8 +125,28 @@ export default function Register() {
 
                 <div className="auth-flex-row">
                     <div>
-                        <input type="radio" />
-                        <label>Remember me </label>
+                        <label className="prevent-select" htmlFor="auth-remember-radio">
+                            <label
+                                className="checkbutton-container"
+                                id="auth-remember-radio"
+                            >
+                                <input
+                                    type="checkbox"
+                                    id="auth-remember-radio"
+                                />
+                                <svg
+                                    viewBox="0 -5 64 64"
+                                    height="14px"
+                                    width="14px"
+                                >
+                                    <path
+                                        d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
+                                        pathLength="575.0541381835938"
+                                        className="checkbutton-path"
+                                    ></path>
+                                </svg> Remember me
+                            </label>
+                        </label>
                     </div>
                     {/* <!-- <span className="auth-span">Forgot password?</span> --> */}
                 </div>
