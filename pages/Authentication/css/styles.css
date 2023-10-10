@@ -1,126 +1,128 @@
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    align-items: center;
-    background-color: #e8e8e8;
+.auth-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
-.login-form-wrapper {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     background-color: #ffffff;
-    border: solid 1px;
-    border-color: #f3f3f3 #cccccc #b6b6b6;
-    border-radius: 3px;
-    position: relative;
-    width: 465px;
+    padding: 30px;
+    width: 450px;
+    border-radius: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    -webkit-box-shadow: 0px 0px 105px 45px rgba(97, 97, 97, 0.24);
+    -moz-box-shadow: 0px 0px 105px 45px rgba(97, 97, 97, 0.24);
+    box-shadow: 0px 0px 105px 45px rgba(97, 97, 97, 0.24);
 }
-.login-form-wrapper h1 {
-    color: #e0401d;
-    border: solid #e0401d;
-    border-width: 0 0 0 3px;
-    display: block;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    left: -1px;
-    margin: 40px 0 60px;
-    padding: 15px 57px;
-    position: relative;
-    text-transform: uppercase;
+
+::placeholder {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-.login-form-wrapper .form-body {
-    padding: 0 60px 60px;
+
+.auth-form button {
+    align-self: flex-end;
 }
-.login-form-wrapper .form-body .fieldset {
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 24px;
-    font-weight: 400;
-    margin-top: 50px;
-    position: relative;
+
+.auth-flex-column > label {
+    color: #151717;
+    font-weight: 600;
+}
+
+.auth-inputForm {
+    border: 1.5px solid #ecedec;
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.auth-input {
+    margin-left: 10px;
+    border-radius: 10px;
+    border: none;
     width: 100%;
+    height: 100%;
+    background: none;
 }
-.login-form-wrapper .form-body .fieldset input {
-    border: solid #e8e8e8;
-    border-width: 0 0 1px 0;
-    box-sizing: border-box;
-    color: #33414e;
-    font-size: 24px;
+
+.auth-input:focus {
     outline: none;
-    padding: 15px 0;
-    width: 100%;
 }
-.login-form-wrapper .form-body .fieldset input:focus ~ label,
-.login-form-wrapper .form-body .fieldset input:valid ~ label {
-    color: #b8cfe4;
-    font-size: 18px;
-    top: -35px;
+
+.auth-inputForm:focus-within {
+    border: 1.5px solid #2d79f3;
 }
-.login-form-wrapper .form-body .fieldset input:focus ~ .highlighter,
-.login-form-wrapper .form-body .fieldset input:valid ~ .highlighter {
-    width: 100%;
-    left: 0;
+
+.auth-flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
 }
-.login-form-wrapper .form-body .fieldset label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: text;
-    color: #33414e;
-    font-size: 24px;
-    font-weight: 300;
-    line-height: 60px;
-    -webkit-transition: 0.2s ease;
-    transition: 0.2s ease;
+
+.auth-flex-row > div > label {
+    font-size: 14px;
+    color: black;
+    font-weight: 400;
 }
-.login-form-wrapper .form-body .fieldset .highlighter {
-    height: 1px;
-    width: 0;
-    position: relative;
-    left: 50%;
-    background-color: #33414e;
-    -webkit-transition: 0.2s ease;
-    transition: 0.2s ease;
-}
-.login-form-wrapper .form-body .fieldset .error-message {
-    color: #e0401d;
-    display: block;
-    font-size: 15px;
-    font-weight: 600;
-    text-align: right;
-    width: 100%;
-}
-.login-form-wrapper .form-body .fieldset:first-child {
-    margin-top: 0px;
-}
-.login-form-wrapper .form-body .fieldset.invalid .highlighter {
-    background-color: #e0401d;
-}
-.login-form-wrapper .form-body input[type="submit"] {
-    background-color: #fff;
-    border: 2px solid #e3e3e3;
-    color: #e3e3e3;
+
+.auth-span {
+    font-size: 14px;
+    margin-left: 5px;
+    color: #2d79f3;
+    font-weight: 500;
     cursor: pointer;
-    font-size: 24px;
-    font-weight: 600;
-    left: 50%;
-    line-height: 1;
-    margin-left: -120px;
-    padding: 20px 0;
-    position: relative;
-    text-transform: uppercase;
-    width: 240px;
 }
-.login-form-wrapper .form-body input[type="submit"]:hover {
-    border-color: #e0401d;
-    color: #e0401d;
+
+.auth-button-submit {
+    margin: 20px 0 10px 0;
+    background-color: #151717;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
 }
-.login-form-wrapper .form-body input[type="submit"]:active {
-    background-color: #e0401d;
-    border-color: #e0401d;
-    color: #fff;
+
+.auth-p {
+    text-align: center;
+    color: black;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.auth-btn {
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    gap: 10px;
+    border: 1px solid #ededef;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.auth-btn:hover {
+    border: 1px solid #2d79f3;
 }

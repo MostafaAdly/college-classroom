@@ -1,0 +1,45 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 200px;
+    top: 90px;
+    left: 0;
+    bottom: 0;
+    border-right: 1px solid rgb(241, 241, 241);
+}
+
+.sidebar .link {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    font-size: 18px;
+}
+.sidebar .logout:hover,
+.sidebar .link:hover {
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.sidebar .link img {
+    height: 33px;
+}
+
+.sidebar p {
+    margin-left: 20px;
+}
+
+.sidebar .logout {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: 20px;
+    bottom: 20px;
+    right: 0;
+}
+
+.sidebar .logout img {
+    height: 35px;
+}

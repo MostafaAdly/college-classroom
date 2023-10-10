@@ -1,0 +1,110 @@
+.header {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 65px;
+    background-color: white;
+    border-bottom: 1px solid rgb(241, 241, 241);
+    z-index: 100;
+}
+
+.header .leftsection {
+    display: flex;
+    align-items: center;
+    height: inherit;
+    flex: 15;
+}
+.header .leftsection img {
+    height: 24px;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.header .leftsection .menu-icon img {
+    transition: background-color 0.5s, border-radius 0.5s, padding 0.5s;
+}
+
+.header .leftsection .menu-icon img:hover {
+    background-color: rgb(245, 245, 245);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.header .leftsection .logo {
+    height: 48px;
+}
+
+.header .leftsection .title {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.header .leftsection .title:hover {
+    text-decoration: underline;
+    color: rgb(113, 144, 155);
+    cursor: pointer;
+}
+
+.header .rightsection {
+    display: flex;
+    align-items: center;
+    height: inherit;
+    flex: 1;
+}
+.header .rightsection img {
+    height: 70%;
+    border-radius: 100%;
+    border: 1.5px;
+    border-color: rgb(224, 224, 224);
+    border-style: solid;
+}
+
+.header .rightsection img:hover {
+    cursor: pointer;
+}
+
+/* === removing default button style ===*/
+.button {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+}
+
+/* button styling */
+.button {
+    --border-right: 4px;
+    --text-stroke-color: rgb(0, 64, 75);
+    --animation-color: #37f8ff;
+    --fs-size: 130%;
+    letter-spacing: 7px;
+    text-decoration: none;
+    font-size: var(--fs-size);
+    font-family: "Arial";
+    position: relative;
+    /* text-transform: uppercase; */
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+/* this is the text, when you hover on button */
+.hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+}
+/* hover */
+.button:hover .hover-text {
+    width: 100%;
+    filter: drop-shadow(0 0 23px var(--animation-color));
+}

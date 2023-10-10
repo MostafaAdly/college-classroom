@@ -12,85 +12,85 @@ export default function Dashboard({ user }: { user: any }) {
 
     return (
         <div>
-            <nav className="main-menu">
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i className="fa fa-home nav-icon"></i>
-                            <span className="nav-text">Home</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i className="fa fa-image nav-icon"></i>
-                            <span className="nav-text">Gallery</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i className="fa fa-pen nav-icon"></i>
-                            <span className="nav-text">Blog</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i className="fa fa-envelope nav-icon"></i>
-                            <span className="nav-text">Messages</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i className="fa fa-bell nav-icon"></i>
-                            <span className="nav-text">Notification</span>
-                        </a>
-                    </li>
-
-                </ul>
-
-                <ul className="logout">
-                    <li>
-                        <a href="#">
-                            <i className="fa fa-cogs nav-icon"></i>
-                            <span className="nav-text">Settings</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i className="fa fa-right-from-bracket nav-icon"></i>
-                            <span className="nav-text" onClick={performLogout}>
-                                Logout
-                            </span>
-                        </a>
-                    </li>
-                </ul>
+            {/* <div className="hourglassBackground">
+                <div className="hourglassContainer">
+                    <div className="hourglassCurves"></div>
+                    <div className="hourglassCapTop"></div>
+                    <div className="hourglassGlassTop"></div>
+                    <div className="hourglassSand"></div>
+                    <div className="hourglassSandStream"></div>
+                    <div className="hourglassCapBottom"></div>
+                    <div className="hourglassGlass"></div>
+                </div>
+            </div> */}
+            <header className="header">
+                <div className="leftsection">
+                    <div className="menu-icon">
+                        <img src="icons/hamburger-menu.svg" alt="" />
+                    </div>
+                    <img className="logo" src="icons/logo.png" alt="" />
+                    <div className="title">
+                        <button data-text="Awesome" className="button">
+                            <span className="actual-text">&nbsp;Classroom&nbsp;</span>
+                            <span className="hover-text" aria-hidden="true"
+                            >&nbsp;Classroom&nbsp;</span
+                            >
+                        </button>
+                        {/* <p>Classroom</p> */}
+                    </div>
+                </div>
+                <div className="rightsection">
+                    <img src="icons/unnamed.png" alt="" />
+                </div>
+            </header>
+            <nav className="sidebar">
+                <div className="link">
+                    <img src="icons/home.png" alt="" />
+                    <p>Home</p>
+                </div>
+                <div className="link">
+                    <img src="icons/calender.png" alt="" />
+                    <p>Calender</p>
+                </div>
+                <div className="link">
+                    <img src="icons/settings.png" alt="" />
+                    <p>Settings</p>
+                </div>
+                <div className="logout" onClick={performLogout}>
+                    <img src="icons/logout.png" alt="" />
+                    <p>Logout</p>
+                </div>
             </nav>
 
-
-            <div className="container">
-                <div className="blob-c">
-                    <div className="blob"></div>
-                    <div className="blob one"></div>
-                    <div className="blob two"></div>
-                    <div className="blob three"></div>
-                    <div className="blob four"></div>
-                    <div className="blob five"></div>
-                    <div className="blob six"></div>
-                    <div className="blob seven"></div>
+            <main className="classes">
+                <div className="card">
+                    <div className="card-image">
+                        <img src="img/math-class.png" alt="" />
+                    </div>
+                    <div className="card-title">Mathematics 5</div>
+                    <div className="card-details">Dr &#183; Khaled El-Helow</div>
+                    <div className="card-tooltip">
+                        <div className="card-tooltip-child">
+                            <div className="img">&#127891;</div>
+                            <div className="label">67</div>
+                        </div>
+                    </div>
                 </div>
-
-                <section>
-                    {user.classes?.map((classroom: any) => (
-                        <ClassroomCard key={classroom.id} id={classroom.id} name={classroom.name} description={classroom.id} image={"https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/ef19280b-4fd3-4fdd-9798-1ec22d8ab4b8"} />
-                    ))}
-                </section>
-            </div>
-
-        </div>
+                <div className="card">
+                    <div className="card-image">
+                        <img src="img/english.jpg" alt="" />
+                    </div>
+                    <div className="card-title">English 102</div>
+                    <div className="card-details">Dr &#183; Magda Yousef</div>
+                    <div className="card-tooltip">
+                        <div className="card-tooltip-child">
+                            <div className="img">&#127891;</div>
+                            <div className="label">132</div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div >
     );
 };
 
