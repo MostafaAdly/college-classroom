@@ -1,6 +1,7 @@
 // ================================================ [ Libraries ]
 import { config as dotenv_config } from "dotenv";
 import BootLoader from "./Loader";
+import bcrypt from 'bcryptjs'
 
 // ================================================ [ Manager ]
 export default class Manager {
@@ -16,7 +17,6 @@ export default class Manager {
             const _loader = new BootLoader(this.data);
             // Initialize utils
             _loader.load_utils();
-
             // Connect to the Database
             _loader.load_Database();
 
