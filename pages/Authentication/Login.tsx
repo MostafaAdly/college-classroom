@@ -78,7 +78,7 @@ export default function Login() {
                         name="passwordInput"
                     />
                 </div>
-
+                <Alert />
                 <div className="auth-flex-row">
                     <div>
                         <label className="prevent-select" htmlFor="auth-remember-radio">

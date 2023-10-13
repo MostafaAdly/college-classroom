@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import logo from './images/classroom.png'
 import { Alert } from '../../components/Alert'
 import { alertService } from '../../services/alert.service';
 import { useRouter } from 'next/navigation'
@@ -122,7 +120,7 @@ export default function Register() {
                         name="passwordInput"
                     />
                 </div>
-
+                <Alert />
                 <div className="auth-flex-row">
                     <div>
                         <label className="prevent-select" htmlFor="auth-remember-radio">
