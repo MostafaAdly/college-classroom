@@ -4,6 +4,8 @@
   "description": "",
   "main": "compiled/Manager.js",
   "scripts": {
+    "deploy": "nodemon -e ts,tsx,json --exec \"tsc && npm run build && node .\" --watch",
+    "run": "nodemon -e ts,tsx,json --exec \"tsc && node .\" --watch",
     "dev": "nodemon -e ts,tsx,json --exec \"npx ts-node src/Manager.ts\" src/Manager.ts --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx next build",

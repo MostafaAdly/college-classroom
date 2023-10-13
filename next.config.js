@@ -8,7 +8,7 @@ module.exports = async (phase, { defaultConfig }) => {
         images: {
             domains: ["upload.wikimedia.org"],
         },
-        productionBrowserSourceMaps: true,
+        productionBrowserSourceMaps: false,
     };
     return nextConfig;
 };

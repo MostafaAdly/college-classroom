@@ -20,7 +20,7 @@ import Logout from './Pages/Authentication/Logout';
 export default class Server {
     // ============== - PRIVATE VARIABLES - ==============
     private data: any;
-    private development: boolean = process.env.ENVIROMENT !== "production";
+    private development: boolean = process.env.ENVIRONMENT !== "production";
 
     // ============== - PUBLIC VARIABLES - ==============
     public sessionHandler: SessionHandler;
@@ -31,9 +31,9 @@ export default class Server {
     });
 
     constructor(data: any) {
-        this.data.utils.print("Website is running in " + (this.development ? "DEVELOPMENT" : "PRODUCTION") + " mode.")
         this.data = data;
         this.data.server = this;
+        this.data.utils.print("Deploying in " + (this.development ? "DEVELOPMENT" : "PRODUCTION")["green"] + " mode.")
     }
     load() {
         this.port = parseInt(process.env.SERVER_PORT || '' + this.port);
