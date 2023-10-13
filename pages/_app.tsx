@@ -1,15 +1,16 @@
 // ================================================================= [ Libraries ]
+import React from 'react'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Suspense } from 'react'
 
 // ================================================================= [ Assets ]
-import './Authentication/css/styles.css'
-import './HomePage/css/style.css'
-import './HomePage/css/classes.css'
-import './HomePage/css/header.css'
-import './HomePage/css/loader.css'
-import './HomePage/css/sidebar.css'
+import '../pages_assets/Authentication/css/styles.css'
+import '../pages_assets/HomePage/css/style.css'
+import '../pages_assets/HomePage/css/classes.css'
+import '../pages_assets/HomePage/css/header.css'
+import '../pages_assets/HomePage/css/loader.css'
+import '../pages_assets/HomePage/css/sidebar.css'
 
 
 // ================================================================= [ Main Application ]

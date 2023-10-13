@@ -15,7 +15,6 @@ import GraphQLAPI from './API_CALLS/GraphQLAPI'
 import Dashboard from './Pages/Dashboard/Dashboard';
 import SessionHandler from './SessionHandler';
 import Logout from './Pages/Authentication/Logout';
-import path from 'path';
 
 // ================================================ [ Server ]
 export default class Server {
@@ -32,6 +31,7 @@ export default class Server {
     });
 
     constructor(data: any) {
+        this.data.utils.print("Website is running in " + (this.development ? "DEVELOPMENT" : "PRODUCTION") + " mode.")
         this.data = data;
         this.data.server = this;
     }

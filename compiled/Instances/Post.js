@@ -22,25 +22,35 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-// ================================================ [ Libraries ]
-const dotenv = __importStar(require("dotenv"));
-const Utils_1 = __importDefault(require("./Utils"));
-// ================================================ [ Manager ]
-class Manager {
-    constructor() {
-        this.data = {};
-        dotenv.config();
-    }
-    initialize() {
-        // Initialize utils
-        new Utils_1.default(this.data).initialize();
-        console.log(this.data);
-        print();
-    }
-    startLoader() { }
+const uuid_1 = require("uuid");
+const mongoose_1 = __importStar(require("mongoose"));
+class Post {
+    id = (0, uuid_1.v4)();
+    user;
+    text;
+    comments;
+    date;
+    static model;
+    static schema = () => {
+        if (!this.model)
+            this.model = mongoose_1.default.model("posts", new mongoose_1.Schema({
+                id: String,
+                user: String,
+                text: String,
+                class: String,
+                comments: [
+                    {
+                        id: String,
+                        user: String,
+                        post: String,
+                        text: String,
+                        date: Date,
+                    }
+                ],
+                date: Date,
+            }));
+        return this.model;
+    };
 }
-exports.default = Manager;
+exports.default = Post;

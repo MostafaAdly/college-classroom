@@ -7,7 +7,7 @@ const checkAndCreateCredentials = async (username: string, email: string, passwo
                 username, email, password
             }
         })
-    })).json()
+    })).json() as object
 }
 
 const performLogin = async (email: string, password: string): Promise<object> => {
@@ -19,7 +19,7 @@ const performLogin = async (email: string, password: string): Promise<object> =>
                 email, password
             }
         })
-    })).json()
+    })).json() as object
 }
 
 export {
